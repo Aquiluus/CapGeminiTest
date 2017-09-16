@@ -11,13 +11,19 @@ namespace CapGeminiTest
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Customer
     {
+        [Required]
         public System.Guid CustomerId { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Surname { get; set; }
+        [Required]
         public string Telephone { get; set; }
+        [Required]
         public string Address { get; set; }
     }
 }

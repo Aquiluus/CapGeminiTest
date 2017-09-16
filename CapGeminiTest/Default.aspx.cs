@@ -10,7 +10,7 @@ namespace CapGeminiTest
     public partial class Default : System.Web.UI.Page
     {
 
-        CGTDataEntities db = new CGTDataEntities();
+        private CGTDataEntities db = new CGTDataEntities();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,9 +25,21 @@ namespace CapGeminiTest
                 Name = customer.Name,
                 Surname = customer.Surname,
                 Telephone = customer.Telephone,
-                Address = customer.Address
+                Address = customer.Address,
+                CustomerId = customer.CustomerId
             }).ToList();
             this.customersGridView.DataBind();
+        }
+
+        protected void DeleteButton_Click(object sender, EventArgs e)
+        {
+            LinkButton linkButton = (LinkButton)sender;
+            HiddenField hiddenId = (HiddenField)linkButton.FindControl("HiddenFieldCustomerId");
+            Guid guid = new Guid(hiddenId.Value);
+            Customer customer = db.Customers.Single(cu => cu.CustomerId.Equals(guid));
+            db.Customers.Remove(customer);
+            db.SaveChanges();
+            FillData();
         }
     }
 }

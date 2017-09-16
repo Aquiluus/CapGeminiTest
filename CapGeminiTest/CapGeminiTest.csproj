@@ -76,6 +76,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Add.aspx" />
     <Content Include="App_Data\CGTData.mdf" />
     <Content Include="App_Data\CGTData_log.ldf">
       <DependentUpon>CGTData.mdf</DependentUpon>
@@ -90,6 +91,7 @@
       <DependentUpon>CGTDataEntities.edmx</DependentUpon>
       <LastGenOutput>CGTDataEntities.cs</LastGenOutput>
     </Content>
+    <Content Include="Edit.aspx" />
     <Content Include="packages.config" />
     <EntityDeploy Include="CGTDataEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -111,6 +113,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CGTDataEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -135,6 +144,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

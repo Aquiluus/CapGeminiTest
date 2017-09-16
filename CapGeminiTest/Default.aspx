@@ -9,6 +9,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
+        <a href="Add.aspx">Add new customer</a>
+        <br />
         <asp:Label ID="resultLabel" runat="server"></asp:Label>
         <asp:GridView ID="customersGridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" />
@@ -17,8 +19,13 @@
                 <asp:BoundField DataField="Surname" HeaderText="Surname" />
                 <asp:BoundField DataField="Telephone" HeaderText="Telephone" />
                 <asp:BoundField DataField="Address" HeaderText="Address" />
-                <asp:ButtonField Text="Edit" />
-                <asp:ButtonField Text="Delete" />
+                <asp:TemplateField HeaderText="Option">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="DeleteButton" runat="server" OnClick="DeleteButton_Click" OnClientClick="return confirm('Are you sure?')">Delete</asp:LinkButton> | <a href="Edit.aspx?CustomerId=<%# Eval("CustomerId") %>">Edit</a>
+                        &nbsp;<asp:HiddenField ID="HiddenFieldCustomerId" runat="server" Value='<%# Eval("CustomerId") %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:BoundField DataField="CustomerId" Visible="False" />
             </Columns>
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
