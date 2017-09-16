@@ -18,3 +18,7 @@ D:\DEV\C#\CapGeminiTest\CapGeminiTest\bin\Microsoft.CodeDom.Providers.DotNetComp
 D:\DEV\C#\CapGeminiTest\CapGeminiTest\obj\Debug\CapGeminiTest.csprojResolveAssemblyReference.cache
 D:\DEV\C#\CapGeminiTest\CapGeminiTest\obj\Debug\CapGeminiTest.dll
 D:\DEV\C#\CapGeminiTest\CapGeminiTest\obj\Debug\CapGeminiTest.pdb
+D:\DEV\C#\CapGeminiTest\CapGeminiTest\bin\EntityFramework.dll
+D:\DEV\C#\CapGeminiTest\CapGeminiTest\bin\EntityFramework.SqlServer.dll
+D:\DEV\C#\CapGeminiTest\CapGeminiTest\bin\EntityFramework.xml
+D:\DEV\C#\CapGeminiTest\CapGeminiTest\bin\EntityFramework.SqlServer.xml

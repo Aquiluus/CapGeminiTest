@@ -126,7 +126,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CGTDataEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Customers.cs">
+    <Compile Include="Customer.cs">
       <DependentUpon>CGTDataEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
