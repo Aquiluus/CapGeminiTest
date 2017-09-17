@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
 
 namespace CapGeminiTest
 {
-    public partial class Edit : System.Web.UI.Page
+    public partial class Edit : System.Web.UI.Page, Utilities
     {
         private string query;
 
@@ -36,6 +37,7 @@ namespace CapGeminiTest
         {
             try
             {
+                VerifyFormsCorrect();
                 query = Request.QueryString["CustomerId"];
                 Guid guid = new Guid(query);
                 Customer customer = DatabaseConnector.GetInstance().Database.Customers.Single(cu => cu.CustomerId.Equals(guid));
@@ -49,12 +51,33 @@ namespace CapGeminiTest
                     customer.Address = this.TextBoxAddress.Text + ", " + this.TextBoxCode.Text + " " + this.TextBoxCity.Text;
                 DatabaseConnector.GetInstance().Database.SaveChanges();
                 Response.Redirect("Default.aspx");
-
             }
-            catch
+            catch (Exception exception)
             {
-                this.LabelMessage.Text = "Can't edit this customer!";
+                this.LabelMessage.Text = exception.Message;
             }
+        }
+
+        public Boolean VerifyFormsCorrect()
+        {
+            var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
+            var regexItemWithDash = new Regex("^[a-zA-Z0-9 -]*$");
+            try
+            {
+                if (!String.IsNullOrEmpty(this.TextBoxName.Text))
+                {
+                    if (regexItem.IsMatch(this.TextBoxName.Text))
+                    {
+                        throw new Exception("Name cotains invalid characters");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return true;
         }
     }
 }
