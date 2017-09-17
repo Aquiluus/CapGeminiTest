@@ -23,7 +23,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CGTDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Customers">
+        <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CustomerId" />
           </Key>
@@ -34,7 +34,7 @@
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityContainer Name="CGTDataEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Customers" EntityType="Self.Customers" />
+          <EntitySet Name="Customers" EntityType="CGTDataModel.Customer" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -43,7 +43,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CGTDataModelStoreContainer" CdmEntityContainer="CGTDataEntities">
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="CGTDataModel.Customers">
+            <EntityTypeMapping TypeName="CGTDataModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
