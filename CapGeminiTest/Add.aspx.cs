@@ -9,9 +9,6 @@ namespace CapGeminiTest
 {
     public partial class Add : System.Web.UI.Page
     {
-
-        private CGTDataEntities db = new CGTDataEntities();
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -27,8 +24,8 @@ namespace CapGeminiTest
                 customer.Surname = this.TextBoxSurname.Text;
                 customer.Telephone = this.TextBoxTelephone.Text;
                 customer.Address = this.TextBoxAddress.Text + ", " + this.TextBoxCode.Text + " " + this.TextBoxCity.Text;
-                db.Customers.Add(customer);
-                db.SaveChanges();
+                DatabaseConnector.GetInstance().Database.Customers.Add(customer);
+                DatabaseConnector.GetInstance().Database.SaveChanges();
                 Response.Redirect("Default.aspx");
                 
             }

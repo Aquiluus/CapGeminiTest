@@ -9,8 +9,6 @@ namespace CapGeminiTest
 {
     public partial class Edit : System.Web.UI.Page
     {
-
-        private CGTDataEntities db = new CGTDataEntities();
         private string query;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -19,7 +17,7 @@ namespace CapGeminiTest
             {
                 query = Request.QueryString["CustomerId"];
                 Guid guid = new Guid(query);
-                Customer customer = db.Customers.Single(cu => cu.CustomerId.Equals(guid));
+                Customer customer = DatabaseConnector.GetInstance().Database.Customers.Single(cu => cu.CustomerId.Equals(guid));
                 this.TextBoxName.Text = customer.Name;
                 this.TextBoxSurname.Text = customer.Surname;
                 this.TextBoxTelephone.Text = customer.Telephone;
@@ -40,7 +38,7 @@ namespace CapGeminiTest
             {
                 query = Request.QueryString["CustomerId"];
                 Guid guid = new Guid(query);
-                Customer customer = db.Customers.Single(cu => cu.CustomerId.Equals(guid));
+                Customer customer = DatabaseConnector.GetInstance().Database.Customers.Single(cu => cu.CustomerId.Equals(guid));
                 if (!String.IsNullOrEmpty(this.TextBoxName.Text))
                     customer.Name = this.TextBoxName.Text;
                 if (!String.IsNullOrEmpty(this.TextBoxSurname.Text))
@@ -49,7 +47,7 @@ namespace CapGeminiTest
                     customer.Telephone = this.TextBoxTelephone.Text;
                 if (!String.IsNullOrEmpty(this.TextBoxAddress.Text) && !String.IsNullOrEmpty(this.TextBoxCode.Text) && !String.IsNullOrEmpty(this.TextBoxCity.Text))
                     customer.Address = this.TextBoxAddress.Text + ", " + this.TextBoxCode.Text + " " + this.TextBoxCity.Text;
-                db.SaveChanges();
+                DatabaseConnector.GetInstance().Database.SaveChanges();
                 Response.Redirect("Default.aspx");
 
             }

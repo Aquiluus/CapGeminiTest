@@ -138,6 +138,7 @@
     <Compile Include="Customer.cs">
       <DependentUpon>CGTDataEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseConnector.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

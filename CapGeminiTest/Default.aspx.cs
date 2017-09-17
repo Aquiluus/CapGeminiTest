@@ -8,9 +8,7 @@ using System.Web.UI.WebControls;
 namespace CapGeminiTest
 {
     public partial class Default : System.Web.UI.Page
-    {
-
-        private CGTDataEntities db = new CGTDataEntities();
+    { 
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,7 +18,7 @@ namespace CapGeminiTest
 
         private void FillData()
         {
-            this.customersGridView.DataSource = db.Customers.Select(customer => new
+            this.customersGridView.DataSource = DatabaseConnector.GetInstance().Database.Customers.Select(customer => new
             {
                 Name = customer.Name,
                 Surname = customer.Surname,
@@ -36,9 +34,9 @@ namespace CapGeminiTest
             LinkButton linkButton = (LinkButton)sender;
             HiddenField hiddenId = (HiddenField)linkButton.FindControl("HiddenFieldCustomerId");
             Guid guid = new Guid(hiddenId.Value);
-            Customer customer = db.Customers.Single(cu => cu.CustomerId.Equals(guid));
-            db.Customers.Remove(customer);
-            db.SaveChanges();
+            Customer customer = DatabaseConnector.GetInstance().Database.Customers.Single(cu => cu.CustomerId.Equals(guid));
+            DatabaseConnector.GetInstance().Database.Customers.Remove(customer);
+            DatabaseConnector.GetInstance().Database.SaveChanges();
             FillData();
         }
     }
