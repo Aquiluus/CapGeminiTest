@@ -8,18 +8,29 @@ using System.Text.RegularExpressions;
 
 namespace CapGeminiTest
 {
-    public partial class Add : System.Web.UI.Page, Utilities
+    public partial class Add : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Saving new data to dabase
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ButtonSave_Click(object sender, EventArgs e)
         {
             try
             {
-                VerifyFormsCorrect();
+                string name = this.TextBoxName.Text;
+                string surname = this.TextBoxSurname.Text;
+                string telephone = this.TextBoxTelephone.Text;
+                string address = this.TextBoxAddress.Text;
+                string code = this.TextBoxCode.Text;
+                string city = this.TextBoxCity.Text;
+                Utilities.VerifyFormsCorrect(name, surname, telephone, address, code, city);
                 Customer customer = new Customer();
                 customer.CustomerId = Guid.NewGuid();
                 customer.Name = this.TextBoxName.Text;
@@ -37,28 +48,6 @@ namespace CapGeminiTest
             }
         }
 
-        public Boolean VerifyFormsCorrect()
-        {
-            var regexItemName = new Regex("^[a-zA-Zęóąśłżźćń]*$");
-            var regexItemAddress = new Regex("^[a-zA-Z0-9 -ęóąśłżźćń]*$");
-            var regexItemSurname = new Regex("^[a-zA-Zęóąśłżźćń ]*$");
-            var regexItemTelephone = new Regex("0-9");
-            try
-            {
-                if (!String.IsNullOrEmpty(this.TextBoxName.Text))
-                {
-                    if (!regexItemName.IsMatch(this.TextBoxName.Text))
-                    {
-                        throw new Exception("Name cotains invalid characters");
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
-            return true;
-        }
+        
     }
 }

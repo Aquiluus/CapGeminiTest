@@ -16,6 +16,10 @@ namespace CapGeminiTest
                 FillData();
         }
 
+        /// <summary>
+        /// Method responsible for getting data from database
+        /// Populates the gridView with said data
+        /// </summary>
         private void FillData()
         {
             this.customersGridView.DataSource = DatabaseConnector.GetInstance().Database.Customers.Select(customer => new
@@ -29,6 +33,11 @@ namespace CapGeminiTest
             this.customersGridView.DataBind();
         }
 
+        /// <summary>
+        /// Method for deleting customers from database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void DeleteButton_Click(object sender, EventArgs e)
         {
             LinkButton linkButton = (LinkButton)sender;

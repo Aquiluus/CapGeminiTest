@@ -49,7 +49,7 @@
             <tr>
                 <td class="auto-style2">Telephone</td>
                 <td class="auto-style3">
-                    <asp:TextBox ID="TextBoxTelephone" runat="server" MaxLength="9" Width="330px"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxTelephone" runat="server" MaxLength="15" Width="330px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
